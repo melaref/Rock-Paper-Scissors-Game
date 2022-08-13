@@ -50,6 +50,8 @@ function game() {
             computerScore++;
         } else if (winner.startsWith("You win")) {
             playerScore++;
+        } else {
+            i--;
         }
     }
     console.log(`Score: You ${playerScore}:${computerScore} Computer`);
