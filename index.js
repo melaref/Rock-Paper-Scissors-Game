@@ -58,6 +58,30 @@ function game() {
     winner(playerScore, computerScore);
 }
 
-game();
+let playerScore = 0;
+let compScore = 0;
+
+const buttons = document.querySelectorAll('button');
+const winnerText = document.getElementById('header');
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        let winner = playRound(button.id, computerPlay());
+        if (winner.startsWith("Computer wins")) {
+            compScore++;
+        } else if (winner.startsWith("You win")) {
+            playerScore++;
+        }
+        winnerText.innerText = (winner + `\n Score: You: ${playerScore} - ${compScore} Computer`);
+        if (playerScore == 5 || compScore == 5) {
+            buttons.forEach((button) => {
+                button.disabled = true;
+            })
+            winnerText.innerText += "\n Game Over";
+        }
+    })
+})
+
+
+
 
 
